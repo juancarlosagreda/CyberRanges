@@ -1,1 +1,1 @@
-Barebones MERN stack appliation for cyber ranges modules.
+#MERN Stack Web Application
