@@ -1,1 +1,1 @@
-#hello world
+Barebones MERN stack appliation for cyber ranges modules.
