@@ -2,6 +2,15 @@ extends layout.pug
 
 block content 
     h1= title
+    table
+        tr 
+            td([innerHTML]="Week")
+            th([innerHTML]="Information security investment")
+            th([innerHTML]="Threat and vulnerability management investment")
+            th([innerHTML]="Information sharing investment")
+            th([innerHTML]="Training investment")
+            th([innerHTML]="Business continuity management investment")
+    script(src="./models/model.js", type="text/javascript")
     script(src="./insightmaker/js/Localization.js", type="text/javascript")
     script(src="./insightmaker/js/Variables.js", type="text/javascript")
     script(src="./insightmaker/js/Utilities.js", type="text/javascript")
@@ -10,7 +19,7 @@ block content
     script(src="./insightmaker/js/Sanitize.js", type="text/javascript")
     script(src="./insightmaker/js/Updater.js", type="text/javascript")
     script(src="./insightmaker/tests/ModelTests.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/00.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/OO.js", type="text/javascript")
     script(src="./insightmaker/js/SimulationEngine/calc/unitsStructure.js", type="text/javascript")
     script(src="./insightmaker/js/SimulationEngine/SimpleCalc.js", type="text/javascript")
     script(src="./insightmaker/js/SimulationEngine/calc/units.js", type="text/javascript")
@@ -36,3 +45,70 @@ block content
         console.log(!{infoSharing})
         console.log(!{training})
         console.log(!{businessContinuity})
+
+        function isLocal() {
+            return true;
+        }
+
+        loadXML(myModel);
+
+        // find primitive values
+        var infoSecurityPrimitive = findName("Information Security Investment");
+        var threatManagementPrimitive = findName("Threat and Vulnerability management investment");
+        var infoSharingPrimitive = findName("Information sharing investment");
+        var trainingPrimitive = findName("Training investment");
+        var businessContinuityPrimitive = findName("Business continuity management investment");
+
+        // set primitive values
+        setValue(infoSecurityPrimitive, !{infoSecurity});
+        setValue(threatManagementPrimitive, !{threatManagement});
+        setValue(infoSharingPrimitive, !{infoSharing});
+        setValue(trainingPrimitive, !{training});
+        setValue(businessContinuityPrimitive, !{businessContinuity});
+
+        // run model
+        var res = runModel(true);
+
+        var table = document.getElementsByTagName("table")[0];
+        
+
+        for(var i = 0; i < res.periods; i++) {
+
+            var weeks = document.createElement("td");
+            weeks.innerHTML = res.times[i];
+
+            var infosecurity = document.createElement("td");
+            infosecurity.innerHTML = res.value(infoSecurityPrimitive)[i];
+
+            var threatmanagement = document.createElement("td");
+            threatmanagement.innerHTML = res.value(threatManagementPrimitive)[i];
+
+            var infosharing = document.createElement("td");
+            infosharing.innerHTML = res.value(infoSharingPrimitive)[i];
+
+            var Training = document.createElement("td");
+            Training.innerHTML = res.value(trainingPrimitive)[i];
+
+            var businesscontinuity = document.createElement("td");
+            businesscontinuity.innerHTML = res.value(businessContinuityPrimitive)[i];
+
+            var row = document.createElement("tr");
+            row.appendChild(weeks);
+            row.appendChild(infosecurity);
+            row.appendChild(threatmanagement);
+            row.appendChild(infosharing);
+            row.appendChild(Training);
+            row.appendChild(businesscontinuity);
+            table.appendChild(row);
+
+        }
+		
+	   
+
+
+
+
+		
+
+
+
