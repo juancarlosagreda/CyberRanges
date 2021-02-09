@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content 
+    h1= title
+    p Welcome to #{title}
+    form(action="/submit-general", method="get")
+        p Information Security Investment
+            input(type="range", value="20", name="infoSecurity")
+        p Threat and Vulnerability Management Investment
+            input(type="range", value="20", name="threatManagement")
+        p Information Sharing Investment
+            input(type="range", value="20", name="infoSharing")
+        p Training Investment
+            input(type="range", value="20",name="training")
+        p Business Continuity Management Investment
+            input(type="range", value="20", name="businessContinuity")
+        br
+        input(type="submit", name="Submit")
+
