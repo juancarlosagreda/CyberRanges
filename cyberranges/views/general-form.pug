@@ -1,19 +1,25 @@
 extends layout.pug
 
 block content 
+    script(src='/javascripts/javascript.js')
     h1= title
     p Welcome to #{title}
     form(action="/submit-general", method="get")
         p Information Security Investment
-            input(type="range", value="20", name="infoSecurity")
+            input(type="range", value="20", name="infoSecurity" onchange='updatePercentage(this)')
+            span.percentage 20%
         p Threat and Vulnerability Management Investment
-            input(type="range", value="20", name="threatManagement")
+            input(type="range", value="20", name="threatManagement" onchange='updatePercentage(this)')
+            span.percentage 20%
         p Information Sharing Investment
-            input(type="range", value="20", name="infoSharing")
+            input(type="range", value="20", name="infoSharing" onchange='updatePercentage(this)')
+            span.percentage 20%
         p Training Investment
-            input(type="range", value="20",name="training")
+            input(type="range", value="20",name="training" onchange='updatePercentage(this)')
+            span.percentage 20%
         p Business Continuity Management Investment
-            input(type="range", value="20", name="businessContinuity")
+            input(type="range", value="20", name="businessContinuity" onchange='updatePercentage(this)')
+            span.percentage 20%
         br
         input(type="submit", name="Submit")
 

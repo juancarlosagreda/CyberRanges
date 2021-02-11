@@ -36,6 +36,7 @@ app.get('/general', function (req, res) {
   return res.render('general-form', { title: 'The General Form' });
 })
 
+
 app.get('/submit-general', function (req, res) {
   console.log(req.query.infoSecurity)
   return res.render('submit-general', {
