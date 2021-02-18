@@ -9,35 +9,6 @@ block content
             th Technology
             th Impact
             th Training
-    script(src="./models/model.js", type="text/javascript")
-    script(src="./insightmaker/js/Localization.js", type="text/javascript")
-    script(src="./insightmaker/js/Variables.js", type="text/javascript")
-    script(src="./insightmaker/js/Utilities.js", type="text/javascript")
-    script(src="./insightmaker/js/API/API.js", type="text/javascript")
-    script(src="./insightmaker/js/mxShim.js", type="text/javascript")
-    script(src="./insightmaker/js/Sanitize.js", type="text/javascript")
-    script(src="./insightmaker/js/Updater.js", type="text/javascript")
-    script(src="./insightmaker/tests/ModelTests.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/OO.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/calc/unitsStructure.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/SimpleCalc.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/calc/units.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/calc/antlr3-all-min.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/calc/output/FormulaLexer.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/calc/output/FormulaParser.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/calc/rand.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/calc/random.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/calc/formula.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/calc/functions.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/Functions.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/Classes.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/Primitives.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/TaskScheduler.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/Simulator.js", type="text/javascript")
-    script(src="./insightmaker/js/SimulationEngine/Modeler.js", type="text/javascript")
-    script(src="./insightmaker/resources/RedBlackNode.js", type="text/javascript")
-    script(src="./insightmaker/resources/RedBlackTree.js", type="text/javascript")
-    script(src="./insightmaker/resources/graph.js", type="text/javascript")
     script.
         console.log(!{infoSecurity})
         console.log(!{threatManagement})
@@ -50,6 +21,13 @@ block content
         }
 
         loadXML(myModel);
+
+        // controller settings
+        var simulatorController = null;
+        var index = 0;
+
+        // making the simulation run one week at a time
+        setPauseInterval(1);
 
         // find primitive values
         var infoSecurityPrimitive = findName("Information Security Investment");

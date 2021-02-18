@@ -1,25 +1,58 @@
 extends layout.pug
 
 block content 
+    script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous")
+    script(type="text/javascript", src="https://www.gstatic.com/charts/loader.js")
+    script(src="./models/model.js", type="text/javascript")
+    script(src="./insightmaker/js/Localization.js", type="text/javascript")
+    script(src="./insightmaker/js/Variables.js", type="text/javascript")
+    script(src="./insightmaker/js/Utilities.js", type="text/javascript")
+    script(src="./insightmaker/js/API/API.js", type="text/javascript")
+    script(src="./insightmaker/js/mxShim.js", type="text/javascript")
+    script(src="./insightmaker/js/Sanitize.js", type="text/javascript")
+    script(src="./insightmaker/js/Updater.js", type="text/javascript")
+    script(src="./insightmaker/tests/ModelTests.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/OO.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/calc/unitsStructure.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/SimpleCalc.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/calc/units.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/calc/antlr3-all-min.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/calc/output/FormulaLexer.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/calc/output/FormulaParser.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/calc/rand.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/calc/random.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/calc/formula.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/calc/functions.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/Functions.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/Classes.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/Primitives.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/TaskScheduler.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/Simulator.js", type="text/javascript")
+    script(src="./insightmaker/js/SimulationEngine/Modeler.js", type="text/javascript")
+    script(src="./insightmaker/resources/RedBlackNode.js", type="text/javascript")
+    script(src="./insightmaker/resources/RedBlackTree.js", type="text/javascript")
+    script(src="./insightmaker/resources/graph.js", type="text/javascript")
     script(src='/javascripts/javascript.js')
+    script(src='/javascripts/insightmakerController.js')
     h1= title
-    p Welcome to #{title}
-    form(action="/submit-general", method="get")
+    form(action="#", method="get")
         p Information Security Investment
-            input(type="range", value="20", name="infoSecurity" onchange='updatePercentage(this)')
-            span.percentage 20%
+            input(type="range", value="0", name="infoSecurity" onchange='updatePercentage(this)', id="infoSecurityId")
+            span.percentage 0%
         p Threat and Vulnerability Management Investment
-            input(type="range", value="20", name="threatManagement" onchange='updatePercentage(this)')
-            span.percentage 20%
+            input(type="range", value="0", name="threatManagement" onchange='updatePercentage(this)', id="threatManagementId")
+            span.percentage 0%
         p Information Sharing Investment
-            input(type="range", value="20", name="infoSharing" onchange='updatePercentage(this)')
-            span.percentage 20%
+            input(type="range", value="0", name="infoSharing" onchange='updatePercentage(this)', id="infoSharingId")
+            span.percentage 0%
         p Training Investment
-            input(type="range", value="20",name="training" onchange='updatePercentage(this)')
-            span.percentage 20%
+            input(type="range", value="0",name="training" onchange='updatePercentage(this)', id="trainingId")
+            span.percentage 0%
         p Business Continuity Management Investment
-            input(type="range", value="20", name="businessContinuity" onchange='updatePercentage(this)')
-            span.percentage 20%
+            input(type="range", value="0", name="businessContinuity" onchange='updatePercentage(this)', id="businessContinuityId")
+            span.percentage 0%
         br
-        input(type="submit", name="Submit")
+        input(type="button", value="Show results", name="results", id="nextButton", onClick="graphData()") 
+        input(type="button", onclick="restartSimulation()", value="Restart", name="Restart")
+    div(id="chart")
 
